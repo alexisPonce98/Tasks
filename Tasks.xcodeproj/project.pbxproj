@@ -20,6 +20,12 @@
 		62936242261FB6F900B3597E /* nextDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62936241261FB6F900B3597E /* nextDayTableViewController.swift */; };
 		62936244261FB73C00B3597E /* newsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62936243261FB73C00B3597E /* newsTableViewController.swift */; };
 		62936246261FB82A00B3597E /* mapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62936245261FB82A00B3597E /* mapsViewController.swift */; };
+		62C3C52926200AF900145821 /* tasksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C52826200AF900145821 /* tasksModel.swift */; };
+		62C3C53A2620176200145821 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C5362620176200145821 /* Task+CoreDataClass.swift */; };
+		62C3C53B2620176200145821 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C5372620176200145821 /* Task+CoreDataProperties.swift */; };
+		62C3C53E2620188A00145821 /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C53C2620188A00145821 /* Day+CoreDataClass.swift */; };
+		62C3C53F2620188A00145821 /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C53D2620188A00145821 /* Day+CoreDataProperties.swift */; };
+		62C3C541262018E900145821 /* DaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C3C540262018E900145821 /* DaysModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,12 @@
 		62936241261FB6F900B3597E /* nextDayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nextDayTableViewController.swift; sourceTree = "<group>"; };
 		62936243261FB73C00B3597E /* newsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsTableViewController.swift; sourceTree = "<group>"; };
 		62936245261FB82A00B3597E /* mapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapsViewController.swift; sourceTree = "<group>"; };
+		62C3C52826200AF900145821 /* tasksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasksModel.swift; sourceTree = "<group>"; };
+		62C3C5362620176200145821 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		62C3C5372620176200145821 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62C3C53C2620188A00145821 /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataClass.swift"; sourceTree = "<group>"; };
+		62C3C53D2620188A00145821 /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		62C3C540262018E900145821 /* DaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,10 @@
 		621B18B226085AC00021F83E /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				62C3C53C2620188A00145821 /* Day+CoreDataClass.swift */,
+				62C3C53D2620188A00145821 /* Day+CoreDataProperties.swift */,
+				62C3C5362620176200145821 /* Task+CoreDataClass.swift */,
+				62C3C5372620176200145821 /* Task+CoreDataProperties.swift */,
 				621B18B326085AC00021F83E /* AppDelegate.swift */,
 				621B18B526085AC00021F83E /* SceneDelegate.swift */,
 				62936241261FB6F900B3597E /* nextDayTableViewController.swift */,
@@ -116,6 +132,8 @@
 				6293623B261FB4CF00B3597E /* ADDViewController.swift */,
 				62936243261FB73C00B3597E /* newsTableViewController.swift */,
 				62936245261FB82A00B3597E /* mapsViewController.swift */,
+				62C3C540262018E900145821 /* DaysModel.swift */,
+				62C3C52826200AF900145821 /* tasksModel.swift */,
 				621B18B926085AC00021F83E /* Main.storyboard */,
 				621B18BF26085AC20021F83E /* Assets.xcassets */,
 				621B18C126085AC20021F83E /* LaunchScreen.storyboard */,
@@ -276,12 +294,18 @@
 			files = (
 				62936242261FB6F900B3597E /* nextDayTableViewController.swift in Sources */,
 				62936244261FB73C00B3597E /* newsTableViewController.swift in Sources */,
+				62C3C53A2620176200145821 /* Task+CoreDataClass.swift in Sources */,
 				6293623C261FB4CF00B3597E /* ADDViewController.swift in Sources */,
+				62C3C53B2620176200145821 /* Task+CoreDataProperties.swift in Sources */,
+				62C3C52926200AF900145821 /* tasksModel.swift in Sources */,
+				62C3C53F2620188A00145821 /* Day+CoreDataProperties.swift in Sources */,
 				62936246261FB82A00B3597E /* mapsViewController.swift in Sources */,
 				621B18BE26085AC00021F83E /* Tasks.xcdatamodeld in Sources */,
 				621B18B826085AC00021F83E /* ViewController.swift in Sources */,
 				621B18B426085AC00021F83E /* AppDelegate.swift in Sources */,
 				621B18B626085AC00021F83E /* SceneDelegate.swift in Sources */,
+				62C3C541262018E900145821 /* DaysModel.swift in Sources */,
+				62C3C53E2620188A00145821 /* Day+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
