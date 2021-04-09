@@ -32,17 +32,17 @@ class DaysModel{
         }
     }
     
-    func saveContext(task:[Task]?, day:String?){
-        let ent = NSEntityDescription.entity(forEntityName: "Day", in: manage!)
-        let dayy = Day(entity: ent!, insertInto: manage!)
-        if(task != nil){
-            self.tasks = task!;
-            dayy.task = task
-            
-        }
-        if(day != nil){
-            self.day = day!
-            dayy.day = day!
+    func saveTaskinDay(task:Task?, day:String?){
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let sort = NSSortDescriptor.init(key: "title", ascending: true)
+        fetch.sortDescriptors = [sort]
+        let result = try? manage?.fetch(fetch) as? [Day]
+        for (index,val) in (result?.enumerated())!{
+            if(val.day == day){
+                if task != nil{
+                    val.task?.append(task!)
+                }
+            }
         }
         
         do{
@@ -68,15 +68,38 @@ class DaysModel{
         
     }
     
-    func fetchTaskCount(){
+    func fetchTaskCount(tasks:Task, day:String)->Int{
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
         let sort = NSSortDescriptor(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
+        var count:Int = 0
+        for (index,val) in (result?.enumerated())!{
+            if(val.day == day){
+                if(val.task! != nil){
+                    return val.task!.count
+                }
+            }
+        }
+        
+        return count
+    }
+    
+    func getTasks(day:String)->[Task]{
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let sort = NSSortDescriptor.init(key: "title", ascending: true)
+        fetch.sortDescriptors = [sort]
+        let result = try? manage?.fetch(fetch) as? [Day]
+        let ret:[Task]
+        for (index,val) in result!.enumerated(){
+            if(val.day! == day){
+                ret = val.task!
+            }
+        }
+        return ret
         
         
     }
-    
     func clearData(){
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
         let del = NSBatchDeleteRequest(fetchRequest: fetch)
