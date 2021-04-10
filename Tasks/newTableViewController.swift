@@ -13,6 +13,16 @@ class newTableViewController: UITableViewController {
 
     var D:DaysModel?
     var fetch = [Day]()
+    let date = Date()
+    let cal = Calendar.current
+    let request: Set<Calendar.Component> = [
+    .year,
+    .month,
+    .day,
+    .hour,
+    .minute,
+    .second
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
         D = DaysModel(context: context)
@@ -27,13 +37,15 @@ class newTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-       let count = D?.fetchRecordCount()
-        return count!
+      return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = D?.fetchRecordCount()
-        return count!
+        let realComp = self.cal.dateComponents(self.request, from: date)
+        let today = "\(realComp.month), \(realComp.day) \(realComp.year)"
+        let count = D?.getTasks(day: today)
+        
+        return count!.count
         
     }
 

@@ -90,7 +90,7 @@ class DaysModel{
         let sort = NSSortDescriptor.init(key: "title", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
-        let ret:[Task]
+        var ret = [Task]()
         for (index,val) in result!.enumerated(){
             if(val.day! == day){
                 ret = val.task!
