@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var tasks:[Task]
         tasks = (D?.getTasks(day: date))!
         cell.textLabel?.text = tasks[indexPath.row].title!
+          print("\(tasks[indexPath.row].title) is the title at \(indexPath.row)")
         return cell
         
     }

@@ -19,7 +19,7 @@ class tasksModel{
     init(managed:NSManagedObjectContext){
         manage = managed;
     }
-    func saveContext(tit:String?, desc:String?, dest:String?, time:String?){
+    func saveContext(tit:String?, desc:String?, dest:String?, time:String?)->Task{
         let ent = NSEntityDescription.entity(forEntityName: "Task", in: manage)
         let task = Task(entity: ent!, insertInto: manage)
         if(tit != nil){
@@ -40,11 +40,12 @@ class tasksModel{
             task.time = time!
         }
         do{
+            
             try manage.save()
         }catch let error{
             print(error.localizedDescription.debugDescription)
         }
-        
+        return task
     }
     
     func fetchResults()->[Task]{

@@ -60,7 +60,7 @@ class DaysModel{
     
     func fetchRecordCount()->Int{
         let fetchd = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
-        let sort = NSSortDescriptor.init(key: "Day", ascending: true)
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetchd.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetchd) as? [Day]
         let count = result!.count
@@ -87,7 +87,7 @@ class DaysModel{
     
     func getTasks(day:String)->[Task]{
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
-        let sort = NSSortDescriptor.init(key: "title", ascending: true)
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
         var ret = [Task]()

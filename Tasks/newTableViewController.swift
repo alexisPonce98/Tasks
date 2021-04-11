@@ -9,9 +9,17 @@
 import UIKit
 
 class newTableViewController: UITableViewController {
+    
+    @IBOutlet var tables: UITableView!
+    
+    var returnTit:String = ""
+    var returnDesc:String = ""
+    var returnTime:String = ""
+    var returnDest:String = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    var fromAdd:Bool = false
     var D:DaysModel?
+    var T:tasksModel?
     var fetch = [Day]()
     let date = Date()
     let cal = Calendar.current
@@ -26,7 +34,15 @@ class newTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         D = DaysModel(context: context)
+        T = tasksModel(managed: context)
         fetch = (D?.fetch())!
+        if(fromAdd){
+            let realComp = self.cal.dateComponents(self.request, from: date)
+            let today = "\(realComp.month), \(realComp.day) \(realComp.year)"
+            var task = T?.saveContext(tit: self.returnTit, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime)
+            D?.saveTaskinDay(task: task, day: today)
+            self.tables.reloadData()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,6 +72,7 @@ class newTableViewController: UITableViewController {
               var tasks:[Task]
               tasks = (D?.getTasks(day: date))!
               cell.textLabel?.text = tasks[indexPath.row].title!
+                print("\(tasks[indexPath.row].title) this is the title of the \(indexPath.row) ")
               return cell
     }
  

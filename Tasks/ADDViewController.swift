@@ -20,7 +20,10 @@ class ADDViewController: UIViewController {
     
     var T:tasksModel?
     var fetch = [Task]()
-    
+    var tit:String = ""
+    var desc:String = ""
+    var time:String = ""
+    var dest:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         T = tasksModel(managed: context)
@@ -29,36 +32,37 @@ class ADDViewController: UIViewController {
     }
     
     @IBAction func add(_ sender: Any) {
-        var tit:String = ""
-        var desc:String = ""
-        var time:String = ""
-        var dest:String = ""
         if(self.taskTitle.text != nil){
-            tit = taskTitle.text!
+            self.tit = taskTitle.text!
         }
         if(self.taskDescrip.text != nil){
-            desc = taskDescrip.text!
+            self.desc = taskDescrip.text!
         }
         if(self.taskTime != nil){
-            time = taskTime.text!
+            self.time = taskTime.text!
         }
         if(self.taskDestination.text != nil){
-            dest = taskDestination.text!
+            self.dest = taskDestination.text!
         }
-        
-        self.T?.saveContext(tit: tit, desc: desc, dest: dest, time: time)
-        fetch = T!.fetchResults()
         
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "backToDay"){
+            let new = segue.destination as? newTableViewController
+            new?.fromAdd = true
+            new?.returnTit = self.tit
+            new?.returnDesc = self.desc
+            new?.returnDest = self.dest
+            new?.returnTime = self.time
+        }
     }
-    */
+    
 
 }
