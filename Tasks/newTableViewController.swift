@@ -10,7 +10,8 @@ import UIKit
 
 class newTableViewController: UITableViewController {
     
-    @IBOutlet var tables: UITableView!
+  
+    //@IBOutlet var tables: UITableView!
     
     var returnTit:String = ""
     var returnDesc:String = ""
@@ -31,17 +32,40 @@ class newTableViewController: UITableViewController {
     .minute,
     .second
     ]
+    var tFetch = [Task]()
     override func viewDidLoad() {
         super.viewDidLoad()
         D = DaysModel(context: context)
         T = tasksModel(managed: context)
+        D?.clearData()
+        T?.clearData()
+        tFetch = (T?.fetchResults())!
         fetch = (D?.fetch())!
+       // tables.delegate = self
+        //tables.dataSource = self
+        for (index,val) in tFetch.enumerated(){
+            print(val.title!)
+        }
+        for (index,val) in fetch.enumerated(){
+            print(val.day)
+            print("with the value of \(val)")
+        }
+        
+        fetch = (D?.fetch())!
+        let realComp = self.cal.dateComponents(self.request, from: date)
+        let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
+        print(D?.ifToday(today: today))
+        if(((D?.ifToday(today: today))! == false) ){
+            D?.saveDay(day: today)
+        }
         if(fromAdd){
-            let realComp = self.cal.dateComponents(self.request, from: date)
-            let today = "\(realComp.month), \(realComp.day) \(realComp.year)"
             var task = T?.saveContext(tit: self.returnTit, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime)
             D?.saveTaskinDay(task: task, day: today)
-            self.tables.reloadData()
+            //self.tables.reloadData()
+        }
+        for (index,val) in fetch.enumerated(){
+            print(val.day)
+            print("with the value of \(val)")
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,7 +77,7 @@ class newTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-      return 0
+      return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,8 +95,10 @@ class newTableViewController: UITableViewController {
           var date:String = ""
               var tasks:[Task]
               tasks = (D?.getTasks(day: date))!
+        if(tasks != [Task]()){
               cell.textLabel?.text = tasks[indexPath.row].title!
                 print("\(tasks[indexPath.row].title) this is the title of the \(indexPath.row) ")
+    }
               return cell
     }
  

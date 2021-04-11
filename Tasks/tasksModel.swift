@@ -40,7 +40,7 @@ class tasksModel{
             task.time = time!
         }
         do{
-            
+            print("this is the title: \(task.title) that is being saved in saveContext for taskModel")
             try manage.save()
         }catch let error{
             print(error.localizedDescription.debugDescription)

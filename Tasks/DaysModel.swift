@@ -24,23 +24,42 @@ class DaysModel{
         if(day != nil){
             dayy.day = day!
         }
-        dayy.task = nil
+        
+        dayy.task = [Task]()
         do{
+            print("\(dayy.day) has been saved")
             try manage?.save()
         }catch let error{
             print("This is the erro in single day save \(error.localizedDescription)")
         }
     }
     
+    func ifToday(today:String)->Bool{
+        print("the day being used in ifToday is \(today)")
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
+        fetch.sortDescriptors = [sort]
+        let result = try? manage?.fetch(fetch) as? [Day]
+        var ret = false
+        for (index,val) in (result?.enumerated())!{
+            print("\(val.day) is the day tha i am currently looking at in ifToday")
+            if(val.day == today){
+                ret = true
+            }
+        }
+        return ret
+    }
+    
     func saveTaskinDay(task:Task?, day:String?){
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
-        let sort = NSSortDescriptor.init(key: "title", ascending: true)
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
         for (index,val) in (result?.enumerated())!{
             if(val.day == day){
                 if task != nil{
                     val.task?.append(task!)
+                    print("\(val.day) has saved \(task?.title)")
                 }
             }
         }
@@ -93,7 +112,11 @@ class DaysModel{
         var ret = [Task]()
         for (index,val) in result!.enumerated(){
             if(val.day! == day){
+                if(val.task != nil){
                 ret = val.task!
+                }else{
+                    ret = [Task]()
+                }
             }
         }
         return ret

@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         D = DaysModel(context: context)
         fetch = (D?.fetch())!
+          print("i am in viewController")
         
         // Do any additional setup after loading the view.
     }
