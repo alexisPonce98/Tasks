@@ -35,11 +35,16 @@ class newTableViewController: UITableViewController {
     var tFetch = [Task]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("the value of fromADD in the begining of being the view \(fromAdd)")
+         let realComp = self.cal.dateComponents(self.request, from: date)
+        let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
         D = DaysModel(context: context)
         T = tasksModel(managed: context)
-        D?.clearData()
-        T?.clearData()
-        tFetch = (T?.fetchResults())!
+        if((D?.ifToday(today: today))! == false){
+            D?.clearData()
+            T?.clearData()
+        }
+            tFetch = (T?.fetchResults())!
         fetch = (D?.fetch())!
        // tables.delegate = self
         //tables.dataSource = self
@@ -49,15 +54,17 @@ class newTableViewController: UITableViewController {
         for (index,val) in fetch.enumerated(){
             print(val.day)
             print("with the value of \(val)")
+            print("and ")
+            for (index,val) in (val.daysTask?.enumerated())!{
+                print("has a task of \(val)")
+            }
         }
         
         fetch = (D?.fetch())!
-        let realComp = self.cal.dateComponents(self.request, from: date)
-        let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
-        print(D?.ifToday(today: today))
         if(((D?.ifToday(today: today))! == false) ){
             D?.saveDay(day: today)
         }
+        print("the value of the from Add is \(fromAdd)")
         if(fromAdd){
             var task = T?.saveContext(tit: self.returnTit, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime)
             D?.saveTaskinDay(task: task, day: today)
@@ -92,10 +99,28 @@ class newTableViewController: UITableViewController {
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-          var date:String = ""
-              var tasks:[Task]
-              tasks = (D?.getTasks(day: date))!
-        if(tasks != [Task]()){
+          let realComp = self.cal.dateComponents(self.request, from: date)
+        var month:Int?
+        var day:Int?
+        var year:Int?
+        if let x = realComp.month{
+            month = x
+        }
+        if let x = realComp.day{
+            day = x
+        }
+        if let x = realComp.year{
+            year = x
+        }
+        var today:String?
+        today = "\(month!), \(day!) \(year!)"
+            var tasks:[Task]
+        tasks = (D?.getTasks(day: today!))!
+        for (index,val) in tasks.enumerated(){
+            print("Finally inside cellForRowAt \(val)")
+        }
+        if(tasks.count != 0){
+            print("inside the tasks.count")
               cell.textLabel?.text = tasks[indexPath.row].title!
                 print("\(tasks[indexPath.row].title) this is the title of the \(indexPath.row) ")
     }

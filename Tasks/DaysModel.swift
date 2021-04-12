@@ -25,7 +25,7 @@ class DaysModel{
             dayy.day = day!
         }
         
-        dayy.task = [Task]()
+       
         do{
             print("\(dayy.day) has been saved")
             try manage?.save()
@@ -35,14 +35,12 @@ class DaysModel{
     }
     
     func ifToday(today:String)->Bool{
-        print("the day being used in ifToday is \(today)")
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
         let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
         var ret = false
-        for (index,val) in (result?.enumerated())!{
-            print("\(val.day) is the day tha i am currently looking at in ifToday")
+        for (_,val) in (result!.enumerated()){
             if(val.day == today){
                 ret = true
             }
@@ -58,8 +56,7 @@ class DaysModel{
         for (index,val) in (result?.enumerated())!{
             if(val.day == day){
                 if task != nil{
-                    val.task?.append(task!)
-                    print("\(val.day) has saved \(task?.title)")
+                    val.addToDaysTask(task!)
                 }
             }
         }
@@ -95,28 +92,28 @@ class DaysModel{
         var count:Int = 0
         for (index,val) in (result?.enumerated())!{
             if(val.day == day){
-                if(val.task! != nil){
-                    return val.task!.count
-                }
+                count = val.daysTask!.count
             }
         }
         
         return count
     }
     
-    func getTasks(day:String)->[Task]{
+    func getTasks(day:String?)->[Task]{
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
         let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
+        var today:String = ""
+        if let x = day{
+            today = x
+        }
         let result = try? manage?.fetch(fetch) as? [Day]
         var ret = [Task]()
         for (index,val) in result!.enumerated(){
-            if(val.day! == day){
-                if(val.task != nil){
-                ret = val.task!
-                }else{
-                    ret = [Task]()
-                }
+            print("I am inside for loop for getTasks \(val.day!) is being compared with \(today)")
+            if(val.day! == today){
+                print("maybe it worked")
+                ret = (val.daysTask?.allObjects as? [Task])!
             }
         }
         return ret

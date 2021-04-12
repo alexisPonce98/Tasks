@@ -54,9 +54,11 @@ class ADDViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if(segue.identifier == "backToDay"){
+        if(segue.identifier == "backToday"){
             let new = segue.destination as? newTableViewController
+            print("the value of it from the adds \(new?.fromAdd)")
             new?.fromAdd = true
+            print("the value of it from the adds after calling to make it true \(new?.fromAdd)")
             new?.returnTit = self.tit
             new?.returnDesc = self.desc
             new?.returnDest = self.dest

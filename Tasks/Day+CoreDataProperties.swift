@@ -2,7 +2,7 @@
 //  Day+CoreDataProperties.swift
 //  Tasks
 //
-//  Created by  on 4/8/21.
+//  Created by  on 4/11/21.
 //  Copyright © 2021 Arizona State University. All rights reserved.
 //
 //
@@ -17,7 +17,6 @@ extension Day {
         return NSFetchRequest<Day>(entityName: "Day")
     }
 
-    @NSManaged public var task: [Task]?
     @NSManaged public var day: String?
     @NSManaged public var daysTask: NSSet?
 
@@ -30,7 +29,7 @@ extension Day {
     @NSManaged public func addToDaysTask(_ value: Task)
 
     @objc(removeDaysTaskObject:)
-    @NSManaged public func removeFromDaysTask(_ value: [Task])
+    @NSManaged public func removeFromDaysTask(_ value: Task)
 
     @objc(addDaysTask:)
     @NSManaged public func addToDaysTask(_ values: NSSet)
