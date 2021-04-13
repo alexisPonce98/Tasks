@@ -17,6 +17,7 @@ class newTableViewController: UITableViewController {
     var returnDesc:String = ""
     var returnTime:String = ""
     var returnDest:String = ""
+    var returnIm:Data?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var fromAdd:Bool = false
     var D:DaysModel?
@@ -35,7 +36,6 @@ class newTableViewController: UITableViewController {
     var tFetch = [Task]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("the value of fromADD in the begining of being the view \(fromAdd)")
          let realComp = self.cal.dateComponents(self.request, from: date)
         let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
         D = DaysModel(context: context)
@@ -44,7 +44,9 @@ class newTableViewController: UITableViewController {
             D?.clearData()
             T?.clearData()
         }
-            tFetch = (T?.fetchResults())!
+        D?.clearData()
+        T?.clearData()
+        tFetch = (T?.fetchResults())!
         fetch = (D?.fetch())!
        // tables.delegate = self
         //tables.dataSource = self
@@ -64,9 +66,12 @@ class newTableViewController: UITableViewController {
         if(((D?.ifToday(today: today))! == false) ){
             D?.saveDay(day: today)
         }
-        print("the value of the from Add is \(fromAdd)")
+        if(returnIm == nil){
+            print("its nil inside the viewDidLoad of newTable")
+        }
         if(fromAdd){
-            var task = T?.saveContext(tit: self.returnTit, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime)
+            var task = T?.saveContext(tit: self.returnTit, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime, image: self.returnIm)
+            
             D?.saveTaskinDay(task: task, day: today)
             //self.tables.reloadData()
         }
@@ -89,7 +94,7 @@ class newTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let realComp = self.cal.dateComponents(self.request, from: date)
-        let today = "\(realComp.month), \(realComp.day) \(realComp.year)"
+        let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
         let count = D?.getTasks(day: today)
         
         return count!.count
@@ -100,29 +105,26 @@ class newTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
           let realComp = self.cal.dateComponents(self.request, from: date)
-        var month:Int?
-        var day:Int?
-        var year:Int?
+        var month = 0
         if let x = realComp.month{
             month = x
+            print("\(month)")
         }
+        var day = 0
         if let x = realComp.day{
             day = x
         }
+        var year = 0
         if let x = realComp.year{
             year = x
         }
-        var today:String?
-        today = "\(month!), \(day!) \(year!)"
-            var tasks:[Task]
-        tasks = (D?.getTasks(day: today!))!
-        for (index,val) in tasks.enumerated(){
-            print("Finally inside cellForRowAt \(val)")
-        }
+        var days = "\(month), \(day) \(year)"
+        var tasks:[Task]
+        tasks = (D?.getTasks(day: days))!
         if(tasks.count != 0){
-            print("inside the tasks.count")
               cell.textLabel?.text = tasks[indexPath.row].title!
-                print("\(tasks[indexPath.row].title) this is the title of the \(indexPath.row) ")
+            let pic  = UIImage(data: tasks[indexPath.row].image!)
+            cell.imageView?.image = pic
     }
               return cell
     }

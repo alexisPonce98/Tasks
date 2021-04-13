@@ -132,12 +132,20 @@
                                     <segue destination="39Z-Gi-j9G" kind="show" identifier="backToday" id="71L-3N-lAX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQq-1g-pV9">
-                                <rect key="frame" x="184" y="563" width="46" height="43"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxa-Rd-XvE">
+                                <rect key="frame" x="160" y="568" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="plus" catalog="system"/>
+                                <state key="normal" title="Add an image"/>
                                 <connections>
-                                    <action selector="add:" destination="jUK-h4-Rsj" eventType="touchUpInside" id="PNS-zs-PaF"/>
+                                    <action selector="addImage:" destination="jUK-h4-Rsj" eventType="touchUpInside" id="f2G-uq-j47"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qa-GA-pN4">
+                                <rect key="frame" x="159" y="624" width="96" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save task info"/>
+                                <connections>
+                                    <action selector="add:" destination="jUK-h4-Rsj" eventType="touchUpInside" id="hle-yi-wem"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -154,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cO-5S-YDi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054" y="115"/>
+            <point key="canvasLocation" x="1053.6231884057972" y="114.50892857142857"/>
         </scene>
         <!--Next Days Date-->
         <scene sceneID="EH3-6a-egz">
@@ -277,11 +285,7 @@
             <point key="canvasLocation" x="-802" y="115"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="plus" catalog="system" width="64" height="56"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jEf-KD-4AV"/>
         <segue reference="71L-3N-lAX"/>
     </inferredMetricsTieBreakers>
 </document>

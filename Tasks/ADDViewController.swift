@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
-class ADDViewController: UIViewController {
+class ADDViewController: UIViewController, UIImagePickerControllerDelegate {
 
-  
+    let image = UIImagePickerController()
+    var im:Data?
     @IBOutlet weak var taskTitle: UITextField!
     @IBOutlet weak var taskDescrip: UITextField!
     @IBOutlet weak var taskTime: UITextField!
@@ -46,8 +47,22 @@ class ADDViewController: UIViewController {
         }
         
     }
+   
     
-    
+    @IBAction func addImage(_ sender: Any) {
+        image.sourceType = .photoLibrary
+        image.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        image.modalPresentationStyle = .popover
+        present(image, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        self.im = info[UIImagePickerController.InfoKey.originalImage] as? Data
+        if(self.im == nil){
+            print("its nil inside the imagePicker")
+        }
+         image.dismiss(animated: true, completion: nil)
+        
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -63,6 +78,10 @@ class ADDViewController: UIViewController {
             new?.returnDesc = self.desc
             new?.returnDest = self.dest
             new?.returnTime = self.time
+            if(self.im == nil){
+                print("its nil inside the prepare method of addView")
+            }
+            new?.returnIm = self.im
         }
     }
     

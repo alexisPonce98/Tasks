@@ -110,15 +110,11 @@ class DaysModel{
         let result = try? manage?.fetch(fetch) as? [Day]
         var ret = [Task]()
         for (index,val) in result!.enumerated(){
-            print("I am inside for loop for getTasks \(val.day!) is being compared with \(today)")
-            if(val.day! == today){
-                print("maybe it worked")
+            if((val.day!) == (today)){
                 ret = (val.daysTask?.allObjects as? [Task])!
             }
         }
         return ret
-        
-        
     }
     func clearData(){
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")

@@ -7,12 +7,13 @@
     <entity name="Task" representedClassName=".Task" syncable="YES">
         <attribute name="descrip" optional="YES" attributeType="String"/>
         <attribute name="destination" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="taskDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="daysTask" inverseEntity="Day"/>
     </entity>
     <elements>
         <element name="Day" positionX="-54" positionY="27" width="128" height="73"/>
-        <element name="Task" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

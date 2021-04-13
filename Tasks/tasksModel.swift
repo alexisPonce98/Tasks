@@ -19,7 +19,7 @@ class tasksModel{
     init(managed:NSManagedObjectContext){
         manage = managed;
     }
-    func saveContext(tit:String?, desc:String?, dest:String?, time:String?)->Task{
+    func saveContext(tit:String?, desc:String?, dest:String?, time:String?, image:Data?)->Task{
         let ent = NSEntityDescription.entity(forEntityName: "Task", in: manage)
         let task = Task(entity: ent!, insertInto: manage)
         if(tit != nil){
@@ -38,6 +38,10 @@ class tasksModel{
         if(time != nil){
             self.time = time!;
             task.time = time!
+        }
+        if(image != nil){
+            print("its nil")
+            task.image = image
         }
         do{
             print("this is the title: \(task.title) that is being saved in saveContext for taskModel")
