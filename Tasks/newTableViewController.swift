@@ -44,12 +44,10 @@ class newTableViewController: UITableViewController {
             D?.clearData()
             T?.clearData()
         }
-        D?.clearData()
-        T?.clearData()
+        //D?.clearData()
+        //T?.clearData()
         tFetch = (T?.fetchResults())!
         fetch = (D?.fetch())!
-       // tables.delegate = self
-        //tables.dataSource = self
         for (index,val) in tFetch.enumerated(){
             print(val.title!)
         }
@@ -122,8 +120,9 @@ class newTableViewController: UITableViewController {
         var tasks:[Task]
         tasks = (D?.getTasks(day: days))!
         if(tasks.count != 0){
-              cell.textLabel?.text = tasks[indexPath.row].title!
+            cell.textLabel?.text = tasks[indexPath.row].title!
             let pic  = UIImage(data: tasks[indexPath.row].image!)
+            
             cell.imageView?.image = pic
     }
               return cell

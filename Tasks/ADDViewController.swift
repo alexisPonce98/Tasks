@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class ADDViewController: UIViewController, UIImagePickerControllerDelegate {
+class ADDViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     let image = UIImagePickerController()
     var im:Data?
@@ -51,14 +51,20 @@ class ADDViewController: UIViewController, UIImagePickerControllerDelegate {
     
     @IBAction func addImage(_ sender: Any) {
         image.sourceType = .photoLibrary
+        image.delegate = self
         image.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         image.modalPresentationStyle = .popover
         present(image, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        self.im = info[UIImagePickerController.InfoKey.originalImage] as? Data
+        let images = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.im = images?.pngData() as? Data
         if(self.im == nil){
             print("its nil inside the imagePicker")
+        }
+        else{
+            print("its not nil inside the imagePicker")
         }
          image.dismiss(animated: true, completion: nil)
         
