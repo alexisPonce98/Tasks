@@ -121,9 +121,11 @@ class newTableViewController: UITableViewController {
         tasks = (D?.getTasks(day: days))!
         if(tasks.count != 0){
             cell.textLabel?.text = tasks[indexPath.row].title!
+            if(tasks[indexPath.row].image != nil){
             let pic  = UIImage(data: tasks[indexPath.row].image!)
             
             cell.imageView?.image = pic
+            }
     }
               return cell
     }

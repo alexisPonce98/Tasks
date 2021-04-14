@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow me to use your location PlEASE!</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Pleas allow me to use your location FOREVER!</string>
 	<key>LSApplicationCategoryType</key>

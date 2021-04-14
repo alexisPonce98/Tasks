@@ -75,7 +75,7 @@ class ADDViewController: UIViewController, UINavigationControllerDelegate, UIIma
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if(segue.identifier == "backToday"){
+        if(segue.identifier == "backToToday"){
             let new = segue.destination as? newTableViewController
             print("the value of it from the adds \(new?.fromAdd)")
             new?.fromAdd = true
@@ -84,10 +84,21 @@ class ADDViewController: UIViewController, UINavigationControllerDelegate, UIIma
             new?.returnDesc = self.desc
             new?.returnDest = self.dest
             new?.returnTime = self.time
-            if(self.im == nil){
-                print("its nil inside the prepare method of addView")
+            if(self.im != nil){
+             new?.returnIm = self.im
             }
-            new?.returnIm = self.im
+        }
+        else if(segue.identifier == "backToNext"){
+            let new = segue.destination as? nextDayTableViewController
+            new?.fromAdd = true
+            new?.returnTitle = self.tit
+            new?.returnDesc = self.desc
+            new?.returnDest = self.dest
+            new?.returnTime = self.time
+            if(self.im != nil){
+                new?.returnIm = self.im
+            }
+            
         }
     }
     

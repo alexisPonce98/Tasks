@@ -9,6 +9,13 @@
 import UIKit
 
 class nextDayTableViewController: UITableViewController {
+    
+    var returnTitle:String?
+    var returnDesc:String?
+    var returnDest:String?
+    var returnTime:String?
+    var returnIm:Data?
+    var fromAdd:Bool = false
     let date = Date()
     let cal = Calendar.current
     let request: Set<Calendar.Component> = [
@@ -20,12 +27,19 @@ class nextDayTableViewController: UITableViewController {
     .second
     ]
     var fetch = [Day]()
+    var tFetch = [Task]()
     let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     var D:DaysModel?
+    var T:tasksModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         D = DaysModel(context: context!)
+        T = tasksModel(managed: context!)
         fetch = (D?.fetch())!
+        tFetch = (T?.fetchResults())!
+       // let realComp = self.cal.date(byAdding: request, to: date+1)
+        //let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
+        //print(today)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
