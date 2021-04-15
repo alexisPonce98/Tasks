@@ -9,6 +9,8 @@
 import UIKit
 
 class newsTableViewController: UITableViewController {
+  
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     struct news:Decodable {
         let articles:[Article]
     }
@@ -23,8 +25,10 @@ class newsTableViewController: UITableViewController {
     var newsItems:[Article]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.spinner.startAnimating()
         DispatchQueue.main.async(execute: {
             self.getNews()
+            self.spinner.stopAnimating()
         })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -48,7 +52,7 @@ class newsTableViewController: UITableViewController {
             let decoder = JSONDecoder()
             let jsonResult = try! decoder.decode(news.self, from: data!)
             self.newsItems = jsonResult.articles
-            
+         
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -73,7 +77,7 @@ class newsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
-        cell.layer.borderWidth = 1.0
+        cell.layer.borderWidth = 2.0
         cell.textLabel?.text = newsItems![indexPath.row].description
         if let x = newsItems![indexPath.row].Author{
             cell.detailTextLabel?.text = x

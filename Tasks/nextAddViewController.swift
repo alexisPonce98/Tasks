@@ -53,11 +53,33 @@ class nextAddViewController: UIViewController, UIImagePickerControllerDelegate, 
     
      
      @IBAction func addImage(_ sender: Any) {
-         image.sourceType = .photoLibrary
-         image.delegate = self
-         image.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-         image.modalPresentationStyle = .popover
-         present(image, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Please select the image source", message: "Select if you would like to use the camera or select an image from PhotoLibrary", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Camerta", style: .default){(action) in
+            if(UIImagePickerController.isSourceTypeAvailable(.camera)){
+                self.image.sourceType = .camera
+                self.image.delegate = self
+                self.image.modalPresentationStyle = .popover
+                self.present(self.image, animated: true, completion: nil)
+            }else{
+                let alert1 = UIAlertController(title: "You do not have a camer to use silly", message: "Please select PhotoLibrary", preferredStyle: .alert)
+                let action2 = UIAlertAction(title: "OK", style: .default){
+                    (action) in
+                }
+                alert1.addAction(action2)
+                self.present(alert1, animated: true, completion: nil)
+            }
+        }
+        
+        let action3 = UIAlertAction(title: "PhotoLibrary", style: .default){(action) in
+            self.image.sourceType = .photoLibrary
+            self.image.delegate = self
+            self.image.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+            self.image.modalPresentationStyle = .popover
+            self.present(self.image, animated: true, completion: nil)
+        }
+        alert.addAction(action1)
+        alert.addAction(action3)
+        self.present(alert, animated: true, completion: nil)
      }
      
      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

@@ -41,7 +41,9 @@ class DaysModel{
         let result = try? manage?.fetch(fetch) as? [Day]
         var ret = false
         for (_,val) in (result!.enumerated()){
-            if(val.day == today){
+            print("\(val.day!) is the day that i am looking at and \(today) is the day that is being compared with")
+            if(val.day! == today){
+                print("\(val.day) oh shit theres a day")
                 ret = true
             }
         }
@@ -56,6 +58,7 @@ class DaysModel{
         for (index,val) in (result?.enumerated())!{
             if(val.day == day){
                 if task != nil{
+                    print("\(val.day) has added the \(task?.title)")
                     val.addToDaysTask(task!)
                 }
             }

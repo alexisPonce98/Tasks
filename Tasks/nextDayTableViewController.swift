@@ -42,8 +42,9 @@ class nextDayTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "M, dd yyyy"
         var today = formatter.string(from: datComp!)
-        if((D?.ifToday(today: today))!){
+        if((D?.ifToday(today: today))! == false){
             D?.saveDay(day: today)
+            
         }
         if(fromAdd){
             var task = T?.saveContext(tit: self.returnTitle, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime, image: self.returnIm)
@@ -71,7 +72,7 @@ class nextDayTableViewController: UITableViewController {
         let datFormat = DateFormatter()
         datFormat.dateFormat = "M, dd yyyy"
         var today = datFormat.string(from: datComp!)
-        print(today)
+        //print(today)
        // var today = "\(datComp.month), \(datComp.day) \(datComp.year)"
         var count = self.D?.getTasks(day: today)
         return count!.count
@@ -80,7 +81,7 @@ class nextDayTableViewController: UITableViewController {
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
         let datComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
         let datFormat = DateFormatter()
         datFormat.dateFormat = "M, dd yyyy"
@@ -88,6 +89,10 @@ class nextDayTableViewController: UITableViewController {
         var tasks:[Task]
         tasks = (D?.getTasks(day: today))!
         cell.textLabel?.text = tasks[indexPath.row].title!
+        if(tasks[indexPath.row].image != nil){
+            var pic = UIImage(data: tasks[indexPath.row].image!)
+            cell.imageView?.image = pic
+        }
         return cell
     }
     
