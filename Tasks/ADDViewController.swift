@@ -13,6 +13,7 @@ class ADDViewController: UIViewController, UINavigationControllerDelegate, UIIma
     let image = UIImagePickerController()
     var im:Data?
     @IBOutlet weak var taskTitle: UITextField!
+
     @IBOutlet weak var taskDescrip: UITextField!
     @IBOutlet weak var taskTime: UITextField!
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

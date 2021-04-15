@@ -164,10 +164,10 @@
             </objects>
             <point key="canvasLocation" x="1338" y="-156"/>
         </scene>
-        <!--View Controller-->
+        <!--Next Add View Controller-->
         <scene sceneID="eRL-8D-gxE">
             <objects>
-                <viewController id="Xsl-st-vh3" sceneMemberID="viewController">
+                <viewController id="Xsl-st-vh3" customClass="nextAddViewController" customModule="Tasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bm0-Rk-uFv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,12 +200,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLq-Rd-J7I">
-                                <rect key="frame" x="213" y="143" width="139" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Xh-7O-z4J">
                                 <rect key="frame" x="213" y="227" width="139" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -228,29 +222,47 @@
                                 <rect key="frame" x="160" y="550" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add an image"/>
+                                <connections>
+                                    <action selector="addImage:" destination="Xsl-st-vh3" eventType="touchUpInside" id="SUk-xd-pc8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2f-n2-MTb">
                                 <rect key="frame" x="159" y="622" width="96" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save task info"/>
+                                <connections>
+                                    <action selector="add:" destination="Xsl-st-vh3" eventType="touchUpInside" id="gj5-E4-4W4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ij4-dl-WKO">
                                 <rect key="frame" x="189" y="720" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <segue destination="Dgx-a1-tfo" kind="show" id="PS8-Ih-TlD"/>
+                                    <segue destination="Dgx-a1-tfo" kind="show" identifier="backToNext" id="PS8-Ih-TlD"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLq-Rd-J7I">
+                                <rect key="frame" x="213" y="105" width="139" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="XlQ-SL-hdI"/>
                     </view>
                     <navigationItem key="navigationItem" id="pcc-eG-aSg"/>
+                    <connections>
+                        <outlet property="taskDescrip" destination="8Xh-7O-z4J" id="uke-kT-9Ot"/>
+                        <outlet property="taskDestination" destination="kUm-FA-KHh" id="LtH-z3-zIA"/>
+                        <outlet property="taskTime" destination="8Py-DK-QIa" id="1zf-Mk-PoX"/>
+                        <outlet property="taskTitle" destination="WLq-Rd-J7I" id="ZaF-AX-QXe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7p-xc-Qak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-726" y="1445"/>
+            <point key="canvasLocation" x="-803" y="1275"/>
         </scene>
         <!--Title-->
         <scene sceneID="EH3-6a-egz">
@@ -261,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="TbZ-ix-Tae">
-                            <rect key="frame" x="0.0" y="100" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
                                 <barButtonItem title="NextDay" id="zNs-kv-eId"/>
@@ -296,7 +308,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="trash.fill" catalog="system" id="K15-QN-7fX"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="nEL-96-2EI">
                             <connections>
-                                <segue destination="Xsl-st-vh3" kind="show" id="DsB-ez-8BW"/>
+                                <segue destination="Xsl-st-vh3" kind="presentation" id="DsB-ez-8BW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -436,7 +448,6 @@
         <image name="trash.fill" catalog="system" width="60" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DsB-ez-8BW"/>
         <segue reference="B16-yp-m6i"/>
         <segue reference="QQj-3Y-ylq"/>
         <segue reference="PS8-Ih-TlD"/>

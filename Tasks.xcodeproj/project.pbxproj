@@ -18,6 +18,7 @@
 		621B18C326085AC20021F83E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621B18C126085AC20021F83E /* LaunchScreen.storyboard */; };
 		621B18CE26085AC20021F83E /* TasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B18CD26085AC20021F83E /* TasksTests.swift */; };
 		621B18D926085AC20021F83E /* TasksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B18D826085AC20021F83E /* TasksUITests.swift */; };
+		626E2D0D2628E3550048D978 /* nextAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626E2D0C2628E3550048D978 /* nextAddViewController.swift */; };
 		6293623C261FB4CF00B3597E /* ADDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293623B261FB4CF00B3597E /* ADDViewController.swift */; };
 		62936242261FB6F900B3597E /* nextDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62936241261FB6F900B3597E /* nextDayTableViewController.swift */; };
 		62936244261FB73C00B3597E /* newsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62936243261FB73C00B3597E /* newsTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		621B18D426085AC20021F83E /* TasksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TasksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		621B18D826085AC20021F83E /* TasksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksUITests.swift; sourceTree = "<group>"; };
 		621B18DA26085AC20021F83E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		626E2D0C2628E3550048D978 /* nextAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nextAddViewController.swift; sourceTree = "<group>"; };
 		6293623B261FB4CF00B3597E /* ADDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDViewController.swift; sourceTree = "<group>"; };
 		62936241261FB6F900B3597E /* nextDayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nextDayTableViewController.swift; sourceTree = "<group>"; };
 		62936243261FB73C00B3597E /* newsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsTableViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				62936241261FB6F900B3597E /* nextDayTableViewController.swift */,
 				62BE62AD26210F3600221550 /* newTableViewController.swift */,
 				6293623B261FB4CF00B3597E /* ADDViewController.swift */,
+				626E2D0C2628E3550048D978 /* nextAddViewController.swift */,
 				62936243261FB73C00B3597E /* newsTableViewController.swift */,
 				62936245261FB82A00B3597E /* mapsViewController.swift */,
 				62C3C540262018E900145821 /* DaysModel.swift */,
@@ -308,6 +311,7 @@
 				621B18B426085AC00021F83E /* AppDelegate.swift in Sources */,
 				621B18B626085AC00021F83E /* SceneDelegate.swift in Sources */,
 				62AA7ECA26241497006D5DC3 /* Day+CoreDataClass.swift in Sources */,
+				626E2D0D2628E3550048D978 /* nextAddViewController.swift in Sources */,
 				62092F81262543B30050633E /* Task+CoreDataProperties.swift in Sources */,
 				62C3C541262018E900145821 /* DaysModel.swift in Sources */,
 			);

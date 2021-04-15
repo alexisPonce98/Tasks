@@ -33,11 +33,23 @@ class nextDayTableViewController: UITableViewController {
     var T:tasksModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         D = DaysModel(context: context!)
         T = tasksModel(managed: context!)
         fetch = (D?.fetch())!
         tFetch = (T?.fetchResults())!
-       // let realComp = self.cal.date(byAdding: request, to: date+1)
+        var datComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M, dd yyyy"
+        var today = formatter.string(from: datComp!)
+        if((D?.ifToday(today: today))!){
+            D?.saveDay(day: today)
+        }
+        if(fromAdd){
+            var task = T?.saveContext(tit: self.returnTitle, desc: self.returnDesc, dest: self.returnDest, time: self.returnTime, image: self.returnIm)
+            D?.saveTaskinDay(task: task, day: today)
+        }
+        //let realComp = self.cal.date(byAdding: request, to: date+1)
         //let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
         //print(today)
         // Uncomment the following line to preserve selection between presentations
@@ -50,12 +62,17 @@ class nextDayTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-       return 0
+       return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let datComp = self.cal.dateComponents(request, from: date)
-        var today = "\(datComp.month), \(datComp.day) \(datComp.year)"
+       // let datComp = self.cal.dateComponents(request, from: date)
+        let datComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
+        let datFormat = DateFormatter()
+        datFormat.dateFormat = "M, dd yyyy"
+        var today = datFormat.string(from: datComp!)
+        print(today)
+       // var today = "\(datComp.month), \(datComp.day) \(datComp.year)"
         var count = self.D?.getTasks(day: today)
         return count!.count
 
@@ -64,8 +81,10 @@ class nextDayTableViewController: UITableViewController {
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        let datComp = self.cal.dateComponents(request, from: date)
-        var today = "\(datComp.month), \(datComp.day) \(datComp.year)"
+        let datComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
+        let datFormat = DateFormatter()
+        datFormat.dateFormat = "M, dd yyyy"
+        var today = datFormat.string(from: datComp!)
         var tasks:[Task]
         tasks = (D?.getTasks(day: today))!
         cell.textLabel?.text = tasks[indexPath.row].title!
