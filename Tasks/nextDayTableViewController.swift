@@ -121,7 +121,30 @@ class nextDayTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-   
+    
+    
+    @IBAction func delete_tasks(_ sender: Any) {
+        let alert = UIAlertController(title: "You are about to delete all of the days tasks", message: "Would you like to continure", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Yes", style: .default){(action) in
+            let alert1 = UIAlertController(title: "The delete taska would NEVER be able to be recovered", message: "Are you sure you would still like to continue", preferredStyle: .alert)
+            let action1 = UIAlertAction(title: "Yes", style: .default){(action) in
+                
+            }
+            let del1 = UIAlertAction(title: "Nevermind", style: .default){(action) in
+                
+            }
+            alert1.addAction(action1)
+            alert1.addAction(del1)
+            self.present(alert1, animated: true, completion:  nil)
+        }
+        let del = UIAlertAction(title: "Nevermind", style: .default){(action) in
+            
+        }
+        alert.addAction(action)
+        alert.addAction(del)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

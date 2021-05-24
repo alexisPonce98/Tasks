@@ -52,7 +52,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TODAY" id="QuJ-3Z-9Nl">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="1NR-le-kl1"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="1NR-le-kl1">
+                            <connections>
+                                <action selector="delete_Task:" destination="39Z-Gi-j9G" id="qSw-mf-f2A"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="r93-BL-Ofa">
                             <connections>
                                 <segue destination="jUK-h4-Rsj" kind="show" identifier="toADD" id="jEf-KD-4AV"/>
@@ -243,7 +247,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLq-Rd-J7I">
-                                <rect key="frame" x="213" y="105" width="139" height="34"/>
+                                <rect key="frame" x="213" y="143" width="139" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -273,7 +277,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="TbZ-ix-Tae">
-                            <rect key="frame" x="0.0" y="154" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="99.5" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
                                 <barButtonItem title="News" id="pEA-BI-Pg4">
@@ -304,7 +308,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TOMORROW" id="n69-gB-RVy">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="trash.fill" catalog="system" id="K15-QN-7fX"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="trash.fill" catalog="system" id="K15-QN-7fX">
+                            <connections>
+                                <action selector="delete_tasks:" destination="Dgx-a1-tfo" id="eQw-WH-hjT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="nEL-96-2EI">
                             <connections>
                                 <segue destination="Xsl-st-vh3" kind="show" id="DsB-ez-8BW"/>

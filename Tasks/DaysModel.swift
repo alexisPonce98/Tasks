@@ -70,6 +70,34 @@ class DaysModel{
             print("this is the error in DayModel saveContext \(error.localizedDescription.description)")
         }
     }
+    func delete_task(task:Task?, day:String)->Bool{
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
+        fetch.sortDescriptors = [sort]
+        let result = try? manage?.fetch(fetch) as? [Day]
+        
+        for (index, val) in (result?.enumerated())!{
+            if val.day == day{
+                if let temp_task = task{
+                    val.removeFromDaysTask(temp_task)
+                }
+            }
+        }
+        return true;
+    }
+    
+    func delete_tasks(tasks:[Task], day:String){
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let sort = NSSortDescriptor.init(key: "day", ascending: true)
+        fetch.sortDescriptors = [sort]
+        let result = try? manage?.fetch(fetch) as? [Day]
+        
+        for (index, val) in ((result?.enumerated())!){
+            if val.day == day{
+                val.removeFromDaysTask(tasks)
+            }
+        }
+    }
     
     func fetch() -> [Day]{
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
