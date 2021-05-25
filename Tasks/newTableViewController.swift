@@ -161,8 +161,13 @@ class newTableViewController: UITableViewController {
         let action = UIAlertAction(title: "Yes", style: .default){(action) in
             let alert1 = UIAlertController(title: "The deleted tasks would NEVER be able to be recovered", message: "Would you still like to continure", preferredStyle: .alert)
             
-            let action1 = UIAlertAction(title: "Yes", style: .default){(action) in
-                
+            let action1 = UIAlertAction(title: "Yes", style: .default){(action) in// everything will be deleted in                                                                              here
+                let realComp = self.cal.dateComponents(self.request, from: self.date)
+                let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
+                let get_task = self.D?.getTasks(day: today)
+                self.D?.delete_tasks(tasks: get_task!, day: today)
+                self.fetch = (self.D?.fetch())!
+                self.tableView.reloadData()
             }
             let del1 = UIAlertAction(title: "Nevermind", style: .default){(action) in
                 

@@ -94,7 +94,16 @@ class DaysModel{
         
         for (index, val) in ((result?.enumerated())!){
             if val.day == day{
-                val.removeFromDaysTask(tasks)
+                var set:NSSet?
+                set?.addingObjects(from: tasks)
+                if let s = set{
+                    val.removeFromDaysTask(set!)
+                }
+                do{
+                    try? manage?.save()
+                }catch let error{
+                    print("There was an error when trying to use the delete_tasks mathod \(error.localizedDescription.description)")
+                }
             }
         }
     }
