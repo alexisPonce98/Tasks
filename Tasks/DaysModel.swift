@@ -91,13 +91,10 @@ class DaysModel{
         let sort = NSSortDescriptor.init(key: "day", ascending: true)
         fetch.sortDescriptors = [sort]
         let result = try? manage?.fetch(fetch) as? [Day]
-        
         for (index, val) in ((result?.enumerated())!){
             if val.day == day{
-                var set:NSSet?
-                set?.addingObjects(from: tasks)
-                if let s = set{
-                    val.removeFromDaysTask(set!)
+                for (index1,val1) in tasks.enumerated(){
+                    val.removeFromDaysTask(val1)
                 }
                 do{
                     try? manage?.save()

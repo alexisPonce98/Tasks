@@ -126,9 +126,15 @@ class nextDayTableViewController: UITableViewController {
     @IBAction func delete_tasks(_ sender: Any) {
         let alert = UIAlertController(title: "You are about to delete all of the days tasks", message: "Would you like to continure", preferredStyle: .alert)
         let action = UIAlertAction(title: "Yes", style: .default){(action) in
-            let alert1 = UIAlertController(title: "The delete taska would NEVER be able to be recovered", message: "Are you sure you would still like to continue", preferredStyle: .alert)
+            let alert1 = UIAlertController(title: "The delete tasks would NEVER be able to be recovered", message: "Are you sure you would still like to continue", preferredStyle: .alert)
             let action1 = UIAlertAction(title: "Yes", style: .default){(action) in
-                
+                let reaComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "M, dd yyyy"
+                var today = dateFormat.string(from: reaComp!)
+                let tasked = self.D?.getTasks(day: today)
+                self.D?.delete_tasks(tasks: tasked!, day: today)
+                self.tableView.reloadData()
             }
             let del1 = UIAlertAction(title: "Nevermind", style: .default){(action) in
                 

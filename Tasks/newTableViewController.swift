@@ -36,6 +36,7 @@ class newTableViewController: UITableViewController {
     var tFetch = [Task]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(customCellTableViewCell.nib(), forCellReuseIdentifier: customCellTableViewCell.identifier)
          let realComp = self.cal.dateComponents(self.request, from: date)
         let today = "\(realComp.month!), \(realComp.day!) \(realComp.year!)"
         D = DaysModel(context: context)
@@ -102,6 +103,7 @@ class newTableViewController: UITableViewController {
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let customCell = tableView.dequeueReusableCell(withIdentifier: customCellTableViewCell.identifier, for: indexPath) as! customCellTableViewCell
           let realComp = self.cal.dateComponents(self.request, from: date)
         var month = 0
         if let x = realComp.month{
@@ -116,16 +118,23 @@ class newTableViewController: UITableViewController {
         if let x = realComp.year{
             year = x
         }
-        var days = "\(month), \(day) \(year)"
+        let days = "\(month), \(day) \(year)"
         var tasks:[Task]
         tasks = (D?.getTasks(day: days))!
         if(tasks.count != 0){
+            var pic = UIImage()
+            if(tasks[indexPath.row].image != nil){
+                pic = UIImage(data: tasks[indexPath.row].image!)!
+            }
+            customCell.configure(title: tasks[indexPath.row].title!, image: pic, time: tasks[indexPath.row].time!)
+            /*
             cell.textLabel?.text = tasks[indexPath.row].title!
             if(tasks[indexPath.row].image != nil){
             let pic  = UIImage(data: tasks[indexPath.row].image!)
             
             cell.imageView?.image = pic
             }
+            */
     }
               return cell
     }
