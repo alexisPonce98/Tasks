@@ -12,7 +12,7 @@ class customCellTableViewCell: UITableViewCell {
     
     static let identifier = "MyTableViewCell"
     static func nib() -> UINib {
-        return UINib(nibName: "MyTableViewCell", bundle: nil)
+        return UINib(nibName: "customCellTableViewCell", bundle: nil)
     }
     
     public func configure(title:String, image: UIImage?, time:String){
