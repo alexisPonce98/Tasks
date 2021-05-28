@@ -102,7 +102,7 @@ class newTableViewController: UITableViewController {
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+      //  let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
         let customCell = tableView.dequeueReusableCell(withIdentifier: customCellTableViewCell.identifier, for: indexPath) as! customCellTableViewCell
           let realComp = self.cal.dateComponents(self.request, from: date)
         var month = 0
@@ -137,9 +137,6 @@ class newTableViewController: UITableViewController {
             */
     }
               return customCell
-    }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
     }
 
         // Override to support conditional editing of the table view.

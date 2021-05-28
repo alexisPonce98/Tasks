@@ -77,8 +77,9 @@ class newsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
-        cell.layer.borderWidth = 2.0
+        //cell.layer.borderWidth = 2.0
         cell.textLabel?.text = newsItems![indexPath.row].description
+        
         if let x = newsItems![indexPath.row].Author{
             cell.detailTextLabel?.text = x
         }else{

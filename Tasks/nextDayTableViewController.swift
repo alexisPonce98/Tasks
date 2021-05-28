@@ -33,7 +33,7 @@ class nextDayTableViewController: UITableViewController {
     var T:tasksModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.register(customCellTableViewCell.nib(), forCellReuseIdentifier: customCellTableViewCell.identifier)
         D = DaysModel(context: context!)
         T = tasksModel(managed: context!)
         fetch = (D?.fetch())!
@@ -81,19 +81,28 @@ class nextDayTableViewController: UITableViewController {
 
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let customCell = tableView.dequeueReusableCell(withIdentifier: customCellTableViewCell.identifier, for: indexPath) as! customCellTableViewCell
         let datComp = self.cal.date(byAdding: .day, value: 1, to: self.date)
         let datFormat = DateFormatter()
         datFormat.dateFormat = "M, dd yyyy"
         var today = datFormat.string(from: datComp!)
         var tasks:[Task]
         tasks = (D?.getTasks(day: today))!
-        cell.textLabel?.text = tasks[indexPath.row].title!
+        let pic = UIImage(data: tasks[indexPath.row].image!)
+        if(pic != nil){
+            customCell.configure(title: tasks[indexPath.row].title!, image: pic, time: tasks[indexPath.row].time!)
+        }else{
+            customCell.configure(title: tasks[indexPath.row].title!, image: nil, time: tasks[indexPath.row].time!)
+        }
+        
+      /*  cell.textLabel?.text = tasks[indexPath.row].title!
         if(tasks[indexPath.row].image != nil){
             var pic = UIImage(data: tasks[indexPath.row].image!)
             cell.imageView?.image = pic
         }
-        return cell
+        return cell*/
+        return customCell
     }
     
 
